@@ -5,6 +5,8 @@ from app.route.user_routes import router as user_router
 from app.route.twitter_routes import router as twitter_router
 from app.route.reddit_routes import router as reddit_router
 from app.route.youtube_routes import router as youtube_router
+from app.route.report_routes import router as report_router
+from app.route.full_report_routes import router as full_report_router
 
 app = FastAPI()
 
@@ -26,6 +28,8 @@ app.include_router(user_router)
 app.include_router(twitter_router)
 app.include_router(reddit_router)
 app.include_router(youtube_router)
+app.include_router(report_router)
+app.include_router(full_report_router)
 
 @app.get("/")
 async def root():

@@ -15,12 +15,12 @@ def save_post(platform: str, content: str, user_handle: Optional[str], timestamp
         "emotion": emotion,
         "metadata": metadata
     }
-    response = supabase.table("Post").insert(post_data).execute()
+    response = supabase.table("post").insert(post_data).execute()
     return response.data if hasattr(response, 'data') else response
 
 
 def save_bulk_posts(posts: List[dict]) -> dict:
     supabase = get_supabase_client()
-    # Each post dict should match the Post table structure
-    response = supabase.table("Post").insert(posts).execute()
+    # Each post dict should match the post table structure
+    response = supabase.table("post").insert(posts).execute()
     return response.data if hasattr(response, 'data') else response 
