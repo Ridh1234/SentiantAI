@@ -3,3 +3,10 @@ uvicorn[standard]
 python-dotenv
 motor
 pydantic
+supabase
+transformers
+torch
+scikit-learn
+tweepy
+praw
+google-api-python-client
