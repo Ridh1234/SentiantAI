@@ -13,6 +13,7 @@ app = FastAPI()
 # CORS settings — allow frontend running on localhost:3000
 origins = [
     "http://localhost:3000",
+    "http://localhost:5173",
 ]
 
 app.add_middleware(
