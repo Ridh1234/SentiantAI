@@ -1,0 +1,27 @@
+from app.utils.news_client import fetch_news
+from app.utils.hf_inference import hf_chat_generate
+from typing import List, Dict, Union
+
+def fetch_and_process_news(query: str) -> Dict:
+    news_response = fetch_news(query)
+    articles = news_response.get("results", [])
+    if not articles:
+        return {"error": "No news articles found."}
+    # Prepare content for Mistral
+    news_texts = [f"Title: {a.get('title', '')}\nDescription: {a.get('description', '')}\nContent: {a.get('content', '')}" for a in articles]
+    user_message = (
+        f"You are an expert news analyst. Given the following news articles about '{query}', "
+        "analyze and summarize the key points, trends, and any notable insights.\n\n"
+    )
+    for idx, text in enumerate(news_texts, 1):
+        user_message += f"Article {idx}:\n{text}\n\n"
+    user_message += "\nSummary and Analysis:"
+    messages = [
+        {"role": "user", "content": user_message}
+    ]
+    response = hf_chat_generate(messages)
+    summary = response["choices"][0]["message"]["content"]
+    return {
+        "summary": summary,
+        "articles": articles
+    } 
