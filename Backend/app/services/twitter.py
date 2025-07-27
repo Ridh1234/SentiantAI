@@ -13,11 +13,12 @@ def fetch_recent_tweets(query: str, max_results: int = 10) -> Union[List[str], d
     max_results = max(10, min(max_results, 100))
 
     try:
+        # Add language filter to the query string
+        twitter_query = f"{query} lang:en"
         response = client.search_recent_tweets(
-            query=query,
+            query=twitter_query,
             max_results=max_results,
-            tweet_fields=["text","created_at","author_id"],
-            lang="en"
+            tweet_fields=["text","created_at","author_id"]
         )
         tweets = response.data if response.data else []
         return tweets
