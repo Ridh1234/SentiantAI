@@ -61,8 +61,11 @@ def generate_full_report(
         {"role": "user", "content": user_message}
     ]
     from app.utils.hf_inference import hf_chat_generate
-    response = hf_chat_generate(messages)
-    final_report = response["choices"][0]["message"]["content"]
+    try:
+        final_report = hf_chat_generate(messages)
+    except Exception as e:
+        logger.error(f"Error generating report: {str(e)}")
+        final_report = "Report unavailable due to upstream error."
 
     return {
         "report": final_report,

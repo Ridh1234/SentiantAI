@@ -19,8 +19,11 @@ def fetch_and_process_news(query: str) -> Dict:
     messages = [
         {"role": "user", "content": user_message}
     ]
-    response = hf_chat_generate(messages)
-    summary = response["choices"][0]["message"]["content"]
+    try:
+        summary = hf_chat_generate(messages)
+    except Exception as e:
+        logger.error(f"Error generating news summary: {str(e)}")
+        summary = "Summary unavailable due to upstream error."
     return {
         "summary": summary,
         "articles": articles

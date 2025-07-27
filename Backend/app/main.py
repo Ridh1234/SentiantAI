@@ -9,6 +9,11 @@ from app.route.report_routes import router as report_router
 from app.route.full_report_routes import router as full_report_router
 from app.route.news_routes import router as news_router
 
+# Set up logging
+import logging
+logging.basicConfig(level=logging.DEBUG)
+logger = logging.getLogger(__name__)
+
 app = FastAPI()
 
 # CORS settings — allow frontend running on localhost:3000
@@ -40,4 +45,4 @@ async def root():
 
 if __name__ == "__main__":
     import uvicorn
-    uvicorn.run("app.main:app", host="0.0.0.0", port=8000, reload=True)
+    uvicorn.run("app.main:app", host="0.0.0.0", port=8000, reload=True, log_level="debug")

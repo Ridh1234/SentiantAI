@@ -11,10 +11,11 @@ SUPABASE_KEY = os.environ.get("SUPABASE_KEY")
 if not SUPABASE_URL or not SUPABASE_KEY:
     raise ValueError("SUPABASE_URL and SUPABASE_KEY must be set in the environment variables.")
 
-supabase: Client = create_client(SUPABASE_URL, SUPABASE_KEY)
-
 def get_supabase_client() -> Client:
     """
-    Returns the Supabase client instance.
+    Returns a new Supabase client instance with error handling.
     """
-    return supabase
+    try:
+        return create_client(SUPABASE_URL, SUPABASE_KEY)
+    except Exception as e:
+        raise Exception(f"Failed to create Supabase client: {str(e)}")
