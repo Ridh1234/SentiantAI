@@ -177,8 +177,22 @@ Create a `.env` file in the Backend directory with the following variables:
 ```env
 SUPABASE_URL=your_supabase_url
 SUPABASE_KEY=your_supabase_key
-MONGODB_URI=your_mongodb_uri
-NEWS_API_KEY=your_news_api_key
+   # Twitter API credentials
+TWITTER_API_KEY=0cOmWjTNILu9IAzBKNNmGdUug
+TWITTER_API_KEY_SECRET=
+TWITTER_BEARER_TOKEN=
+# === REDDIT ===
+REDDIT_CLIENT_ID=
+REDDIT_CLIENT_SECRET=
+REDDIT_USERNAME=
+REDDIT_PASSWORD=
+REDDIT_USER_AGENT=
+# === youtube ===
+YOUTUBE_API_KEY=
+# === Hugging face Auth token ===
+HF_API_TOKEN=
+#=== News API ====
+NEWS_API_KEY=
 ```
 
 ### 🏃‍♂️ Running the Application
