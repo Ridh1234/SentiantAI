@@ -10,3 +10,5 @@ scikit-learn
 tweepy
 praw
 google-api-python-client
+requests
+newsapi-python
