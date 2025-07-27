@@ -1,70 +1,179 @@
-"# SentiantAI
+# 💭 SentiantAI
 
-[![Demo Video](https://img.youtube.com/vi/YOUR_VIDEO_ID/0.jpg)](https://drive.google.com/file/d/1jMhOr-MFE0CfSvO6rZZU2uRJMS1IeTTx/view)
+<div align="center">
 
-SentiantAI is a modern AI-powered analytics platform that combines real-time data processing with advanced machine learning capabilities. Built with a robust frontend and backend architecture, it provides powerful insights and visualization tools for your data analysis needs.
+🎥 **[📹 Watch Demo Video](https://drive.google.com/file/d/1jMhOr-MFE0CfSvO6rZZU2uRJMS1IeTTx/view)** 🎥
 
-## Features
+[![Demo](https://img.shields.io/badge/🎬_Demo-Watch_Now-red?style=for-the-badge&logo=youtube&logoColor=white)](https://drive.google.com/file/d/1jMhOr-MFE0CfSvO6rZZU2uRJMS1IeTTx/view)
 
-- Real-time data processing and analysis
-- Advanced AI/ML capabilities
-- Interactive visualizations with Chart.js and Recharts
-- Social media integration
-- News API integration
-- PDF report generation
-- Modern, responsive UI with Framer Motion animations
-- Secure authentication system
+**A modern AI-powered sentiment analysis platform that combines real-time data processing with advanced machine learning capabilities**
 
-## Tech Stack
+![MIT License](https://img.shields.io/badge/License-MIT-blue.svg)
+![React](https://img.shields.io/badge/React-19-61DAFB?logo=react)
+![FastAPI](https://img.shields.io/badge/FastAPI-Python-009688?logo=fastapi)
+![Supabase](https://img.shields.io/badge/Supabase-Database-3ECF8E?logo=supabase)
+![AI](https://img.shields.io/badge/AI-Sentiment_Analysis-FF6B6B?logo=openai)
 
-### Frontend
-- **Framework**: React 19 with Vite
-- **UI Libraries**: React Icons, Recharts, Chart.js
-- **State Management**: React Context/Redux
-- **Styling**: CSS Modules
-- **Animations**: Framer Motion
-- **Routing**: React Router DOM
-- **API Client**: Axios
-- **PDF Generation**: jsPDF
-- **Canvas**: html2canvas
+</div>
 
-### Backend
-- **Framework**: FastAPI
-- **Database**: Supabase
-- **AI/ML**: Transformers, PyTorch
-- **Data Processing**: Motor (MongoDB), Scikit-learn
-- **Social Media**: Tweepy (Twitter), PRAW (Reddit)
-- **News**: Google News API
-- **Authentication**: Supabase Auth
+---
 
-## Getting Started
+## 🚀 Overview
 
-### Prerequisites
-- Supabase account
+SentiantAI is a modern AI-powered sentiment analysis platform that combines real-time data processing with advanced machine learning capabilities. Built with a robust frontend and backend architecture, it provides powerful insights and visualization tools for your data analysis needs.
 
-### Installation
+## ✨ Features
 
-1. Clone the repository:
+<table>
+<tr>
+<td>
+
+- 📊 **Real-time data processing and analysis**
+- 🤖 **Advanced AI/ML capabilities**
+- 📈 **Interactive visualizations with Chart.js and Recharts**
+- 📱 **Social media integration**
+
+</td>
+<td>
+
+- 📰 **News API integration**
+- 📄 **PDF report generation**
+- 🎨 **Modern, responsive UI with Framer Motion animations**
+- 🔐 **Secure authentication system**
+
+</td>
+</tr>
+</table>
+
+## 🛠️ Tech Stack
+
+### 🎨 Frontend
+<table>
+<tr>
+<td><strong>Category</strong></td>
+<td><strong>Technology</strong></td>
+<td><strong>Purpose</strong></td>
+</tr>
+<tr>
+<td>Framework</td>
+<td><img src="https://img.shields.io/badge/React-19-61DAFB?logo=react&logoColor=white" alt="React"></td>
+<td>with Vite</td>
+</tr>
+<tr>
+<td>UI Libraries</td>
+<td><img src="https://img.shields.io/badge/React_Icons-FF6B6B?logo=react&logoColor=white" alt="React Icons"> <img src="https://img.shields.io/badge/Recharts-8884D8" alt="Recharts"> <img src="https://img.shields.io/badge/Chart.js-FF6384?logo=chartdotjs&logoColor=white" alt="Chart.js"></td>
+<td>Icons & Charts</td>
+</tr>
+<tr>
+<td>State Management</td>
+<td><img src="https://img.shields.io/badge/React_Context-61DAFB?logo=react&logoColor=white" alt="React Context"> <img src="https://img.shields.io/badge/Redux-764ABC?logo=redux&logoColor=white" alt="Redux"></td>
+<td>State handling</td>
+</tr>
+<tr>
+<td>Styling</td>
+<td><img src="https://img.shields.io/badge/CSS_Modules-1572B6?logo=css3&logoColor=white" alt="CSS Modules"></td>
+<td>Component styling</td>
+</tr>
+<tr>
+<td>Animations</td>
+<td><img src="https://img.shields.io/badge/Framer_Motion-0055FF?logo=framer&logoColor=white" alt="Framer Motion"></td>
+<td>UI animations</td>
+</tr>
+<tr>
+<td>Routing</td>
+<td><img src="https://img.shields.io/badge/React_Router-CA4245?logo=reactrouter&logoColor=white" alt="React Router"></td>
+<td>Navigation</td>
+</tr>
+<tr>
+<td>API Client</td>
+<td><img src="https://img.shields.io/badge/Axios-671DDF?logo=axios&logoColor=white" alt="Axios"></td>
+<td>HTTP requests</td>
+</tr>
+<tr>
+<td>PDF Generation</td>
+<td><img src="https://img.shields.io/badge/jsPDF-FF6B6B" alt="jsPDF"></td>
+<td>Report generation</td>
+</tr>
+<tr>
+<td>Canvas</td>
+<td><img src="https://img.shields.io/badge/html2canvas-4CAF50" alt="html2canvas"></td>
+<td>Screenshot capture</td>
+</tr>
+</table>
+
+### ⚙️ Backend
+<table>
+<tr>
+<td><strong>Category</strong></td>
+<td><strong>Technology</strong></td>
+<td><strong>Purpose</strong></td>
+</tr>
+<tr>
+<td>Framework</td>
+<td><img src="https://img.shields.io/badge/FastAPI-009688?logo=fastapi&logoColor=white" alt="FastAPI"></td>
+<td>Web framework</td>
+</tr>
+<tr>
+<td>Database</td>
+<td><img src="https://img.shields.io/badge/Supabase-3ECF8E?logo=supabase&logoColor=white" alt="Supabase"></td>
+<td>Primary database</td>
+</tr>
+<tr>
+<td>AI/ML</td>
+<td><img src="https://img.shields.io/badge/Transformers-FFD43B?logo=python&logoColor=black" alt="Transformers"> <img src="https://img.shields.io/badge/PyTorch-EE4C2C?logo=pytorch&logoColor=white" alt="PyTorch"></td>
+<td>Machine learning</td>
+</tr>
+<tr>
+<td>Data Processing</td>
+<td><img src="https://img.shields.io/badge/Motor-47A248?logo=mongodb&logoColor=white" alt="Motor"> <img src="https://img.shields.io/badge/Scikit_learn-F7931E?logo=scikitlearn&logoColor=white" alt="Scikit-learn"></td>
+<td>MongoDB & ML</td>
+</tr>
+<tr>
+<td>Social Media</td>
+<td><img src="https://img.shields.io/badge/Tweepy-1DA1F2?logo=twitter&logoColor=white" alt="Tweepy"> <img src="https://img.shields.io/badge/PRAW-FF4500?logo=reddit&logoColor=white" alt="PRAW"></td>
+<td>Twitter & Reddit</td>
+</tr>
+<tr>
+<td>News</td>
+<td><img src="https://img.shields.io/badge/Google_News_API-4285F4?logo=google&logoColor=white" alt="Google News API"></td>
+<td>News integration</td>
+</tr>
+<tr>
+<td>Authentication</td>
+<td><img src="https://img.shields.io/badge/Supabase_Auth-3ECF8E?logo=supabase&logoColor=white" alt="Supabase Auth"></td>
+<td>User authentication</td>
+</tr>
+</table>
+
+## 🚀 Getting Started
+
+### 📋 Prerequisites
+- 🗄️ **Supabase account**
+
+### 📦 Installation
+
+#### 1️⃣ Clone the repository:
 ```bash
 git clone https://github.com/Ridh1234/SentiantAI.git
 cd SentiantAI
 ```
 
-2. Install frontend dependencies:
+#### 2️⃣ Install frontend dependencies:
 ```bash
 cd frontend
 npm install
 ```
 
-3. Install backend dependencies:
+#### 3️⃣ Install backend dependencies:
 ```bash
 cd ../Backend
 pip install -r requirements.txt
 ```
 
-### Environment Setup
+### ⚙️ Environment Setup
 
 Create a `.env` file in the Backend directory with the following variables:
+
 ```env
 SUPABASE_URL=your_supabase_url
 SUPABASE_KEY=your_supabase_key
@@ -72,55 +181,34 @@ MONGODB_URI=your_mongodb_uri
 NEWS_API_KEY=your_news_api_key
 ```
 
-### Running the Application
+### 🏃‍♂️ Running the Application
 
-1. Start the backend server:
+#### 1️⃣ Start the backend server:
 ```bash
 cd Backend
 uvicorn app.main:app --reload
 ```
 
-2. In a new terminal, start the frontend:
+#### 2️⃣ In a new terminal, start the frontend:
 ```bash
 cd frontend
 npm run dev
 ```
 
-## Project Structure
+## 📁 Project Structure
 
 ```
-SentiantAI/
-├── Backend/
-│   ├── app/
-│   │   ├── api/
-│   │   ├── models/
-│   │   ├── utils/
-│   │   └── main.py
-│   └── requirements.txt
-├── frontend/
-│   ├── public/
-│   ├── src/
-│   │   ├── components/
-│   │   ├── pages/
-│   │   ├── services/
-│   │   └── utils/
-│   ├── package.json
-│   └── vite.config.ts
-└── README.md
-```
-
-## Contributing
-
-1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
-
-## License
-
-This project is licensed under the MIT License - see the LICENSE file for details.
-
-## Support
-
-For support, please open an issue in the GitHub repository or contact the maintainers directly.
+📦 SentiantAI/
+┣ 📂 Backend/
+┃ ┣ 📂 app/
+┃ ┃ ┣ 📂 api/
+┃ ┃ ┣ 📂 models/
+┃ ┃ ┣ 📂 utils/
+┃ ┃ ┗ 📜 main.py
+┃ ┗ 📜 requirements.txt
+┣ 📂 frontend/
+┃ ┣ 📂 public/
+┃ ┣ 📂 src/
+┃ ┃ ┣ 📂 components/
+┃ ┃ ┣ 📂 pages/
+┃ ┃
