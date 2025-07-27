@@ -12,3 +12,4 @@ praw
 google-api-python-client
 requests
 newsapi-python
+pydantic[email]
