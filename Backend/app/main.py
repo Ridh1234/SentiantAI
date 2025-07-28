@@ -18,10 +18,10 @@ app = FastAPI()
 
 # CORS settings — allow frontend running on localhost:3000
 origins = [
-    "http://localhost:3000",
     "http://localhost:5173",
-    "https://sentiant-1zz8mq6wh-hridyanshs-projects.vercel.app/",
+    "https://sentiant-1zz8mq6wh-hridyanshs-projects.vercel.app",
 ]
+
 
 app.add_middleware(
     CORSMiddleware,
