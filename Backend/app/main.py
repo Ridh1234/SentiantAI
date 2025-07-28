@@ -20,6 +20,7 @@ app = FastAPI()
 origins = [
     "http://localhost:3000",
     "http://localhost:5173",
+    "https://sentiant-1zz8mq6wh-hridyanshs-projects.vercel.app/",
 ]
 
 app.add_middleware(
@@ -45,4 +46,7 @@ async def root():
 
 if __name__ == "__main__":
     import uvicorn
-    uvicorn.run("app.main:app", host="0.0.0.0", port=8000, reload=True, log_level="debug")
+    import os
+
+    port = int(os.environ.get("PORT", 8000))  # default to 8000 for local use
+    uvicorn.run("app.main:app", host="0.0.0.0", port=port, reload=True, log_level="debug")
