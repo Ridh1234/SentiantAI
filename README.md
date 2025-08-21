@@ -226,3 +226,7 @@ npm run dev
 ┃ ┃ ┣ 📂 components/
 ┃ ┃ ┣ 📂 pages/
 ┃ ┃
+
+## 📜 License
+
+This project is licensed under the [MIT License](LICENSE).
