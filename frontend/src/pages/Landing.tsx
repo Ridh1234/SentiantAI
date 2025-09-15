@@ -5,9 +5,9 @@ import {
   FaChartLine, FaUsers, FaSmile, FaBuilding, FaQuoteLeft, FaRocket, 
   FaShieldAlt, FaCog, FaLightbulb, FaCheckCircle, FaStar, FaGlobe,
   FaTwitter, FaLinkedin, FaGithub, FaEnvelope, FaPhone, FaMapMarkerAlt,
-  FaArrowRight, FaPlay, FaDownload, FaHeadset, FaClock, FaAward
+  FaArrowRight, FaPlay, FaHeadset, FaClock, FaAward
 } from 'react-icons/fa';
-import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, PieChart, Pie, Cell, LineChart, Line, Legend, AreaChart, Area, RadialBarChart, RadialBar, PolarAngleAxis, RadarChart, PolarGrid, Radar } from 'recharts';
+import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, PieChart, Pie, Cell, LineChart, Line, AreaChart, Area, RadialBarChart, RadialBar, PolarAngleAxis, RadarChart, PolarGrid, Radar } from 'recharts';
 import { motion } from 'framer-motion';
 
 const statsData = [
@@ -254,8 +254,8 @@ function Landing(): React.ReactElement {
       {/* Hero Section */}
       <section className="hero">
         <div className="hero-content">
-          <div className="hero-icon"><FaSmile size={48} color="#2563eb"/></div>
           <h1 className="hero-title">Transform Customer Feedback into Strategic Insights</h1>
+          <div className="hero-icon"><FaSmile size={48} color="#2563eb"/></div>
           <p className="hero-subtitle">The world's most advanced sentiment analytics platform. Trusted by Fortune 500 companies to understand customer emotions, predict churn, and drive growth through AI-powered insights.</p>
           <div className="hero-stats">
             <div className="hero-stat">
@@ -272,7 +272,7 @@ function Landing(): React.ReactElement {
             </div>
           </div>
           <div className="hero-cta">
-            <Link to="/signup" className="cta-btn primary">Start Free Trial <FaArrowRight style={{marginLeft: 8}}/></Link>
+            <Link to="/home" className="cta-btn primary">Start Free Trial <FaArrowRight style={{marginLeft: 8}}/></Link>
             <a href="https://drive.google.com/file/d/1jMhOr-MFE0CfSvO6rZZU2uRJMS1IeTTx/view?usp=sharing" target="_blank" rel="noopener noreferrer" className="cta-btn secondary"><FaPlay style={{marginRight: 8}}/>Watch Demo</a>
           </div>
           <p className="trust-text">No credit card required • 14-day free trial • Cancel anytime</p>
@@ -563,14 +563,14 @@ function Landing(): React.ReactElement {
         </div>
       </section>
 
-      {/* CTA Section */}
+  {/* CTA Section */}
       <section className="cta-section">
         <div className="cta-content">
           <h2>Ready to Transform Your Customer Insights?</h2>
           <p>Join thousands of companies already using SentientAI to understand their customers better</p>
           <div className="cta-buttons">
-            <Link to="/signup" className="cta-btn primary large">Start Free Trial <FaArrowRight style={{marginLeft: 8}}/></Link>
-            <button className="cta-btn secondary large"><FaHeadset style={{marginRight: 8}}/>Schedule Demo</button>
+    <Link to="/home" className="cta-btn primary large">Continue as Guest <FaArrowRight style={{marginLeft: 8}}/></Link>
+    <Link to="/signup" className="cta-btn secondary large"><FaHeadset style={{marginRight: 8}}/>Start Full Access</Link>
           </div>
           <div className="cta-features">
             <div className="cta-feature"><FaClock style={{marginRight: 8}}/>Setup in 5 minutes</div>

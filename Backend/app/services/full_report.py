@@ -3,7 +3,11 @@ from app.services.youtube import analyze_comments_sentiment as analyze_youtube
 from app.services.twitter import analyze_tweets_sentiment as analyze_twitter
 from app.services.news import fetch_and_process_news
 from app.services.report import generate_report_from_sentiments
+from app.utils.gemini_client import gemini_chat_generate
 from typing import List, Dict
+import logging
+
+logger = logging.getLogger(__name__)
 
 def generate_full_report(
     topic: str,
@@ -28,13 +32,13 @@ def generate_full_report(
     # Combine all social comments with sentiment
     all_comments = reddit_comments + youtube_comments + twitter_comments
 
-    # Fetch and process news (for Mistral only)
+    # Fetch and process news (for Gemini)
     news_info = fetch_and_process_news(topic)
     news_summary = news_info.get("summary", "")
     news_articles = news_info.get("articles", [])
 
-    # Generate the report using Mistral (social + news)
-    # Pass both social comments and news summary to Mistral
+    # Generate the report using Gemini (social + news)
+    # Pass both social comments and news summary to Gemini
     user_message = (
         f"You are an expert analyst. Given the following social media comments and news articles about '{topic}', "
         "generate a detailed summary and report. The report should include:\n"
@@ -60,9 +64,8 @@ def generate_full_report(
     messages = [
         {"role": "user", "content": user_message}
     ]
-    from app.utils.hf_inference import hf_chat_generate
     try:
-        final_report = hf_chat_generate(messages)
+        final_report = gemini_chat_generate(messages)
     except Exception as e:
         logger.error(f"Error generating report: {str(e)}")
         final_report = "Report unavailable due to upstream error."

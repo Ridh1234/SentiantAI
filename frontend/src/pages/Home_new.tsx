@@ -1,12 +1,11 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Link, useNavigate, useSearchParams } from 'react-router-dom';
-import { FaChartLine, FaUser, FaMoon, FaSun, FaCreditCard, FaSignInAlt, FaLightbulb, FaSearch, FaFilter } from 'react-icons/fa';
-import { MdAnalytics } from 'react-icons/md';
+import { FaChartLine, FaUser, FaMoon, FaSun, FaCreditCard, FaSignInAlt } from 'react-icons/fa';
 import './Home.css';
 import { creditService, type CreditInfo } from '../services/creditService';
 
 function Home() {
-  const [darkMode, setDarkMode] = useState(false);
+  const [darkMode, setDarkMode] = useState(true);
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [dropdownPos, setDropdownPos] = useState<{top: number, right: number}>({top: 0, right: 0});
   const [searchParams] = useSearchParams();
@@ -19,34 +18,33 @@ function Home() {
   const [creditInfo, setCreditInfo] = useState<CreditInfo | null>(null);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
-  // Initialize and persist dark mode preference in localStorage
+  // Optionally, persist dark mode preference in localStorage for future reloads
   useEffect(() => {
     const stored = localStorage.getItem('sentientai-darkmode');
-    setDarkMode(stored === 'true' ? true : false); // Default to light mode if no preference or invalid value
+    if (stored === null) {
+      setDarkMode(true);
+    } else {
+      setDarkMode(stored === 'true');
+    }
   }, []);
 
   useEffect(() => {
     localStorage.setItem('sentientai-darkmode', String(darkMode));
-    // Update document theme for system-wide consistency
-    document.documentElement.classList.toggle('dark-theme', darkMode);
   }, [darkMode]);
 
-  // Initialize guest session for unauthenticated users
+  // Initialize session and check trial mode
   useEffect(() => {
     const initializeApp = async () => {
-      // Guest model replaces trial; consider user a guest if not authenticated
+      const isTrial = searchParams.get('trial') === 'true';
+      setIsTrialMode(isTrial);
+      
       // Check if user is authenticated (you might have a token or user info)
       const token = localStorage.getItem('auth_token');
       setIsAuthenticated(!!token);
-      console.log('Is authenticated:', !!token); // Debug log
-
-      setIsTrialMode(!token); // treat unauthenticated as guest mode
-
-      if (!token) {
-        console.log('Initializing guest session...');
+      
+      if (isTrial && !isAuthenticated) {
         try {
           const sessionInfo = await creditService.initializeSession();
-          console.log('Guest session initialized:', sessionInfo);
           if (sessionInfo) {
             setCreditInfo({
               credits_remaining: sessionInfo.credits_remaining,
@@ -54,14 +52,13 @@ function Home() {
             });
           }
         } catch (error) {
-          console.error('Failed to initialize guest session:', error);
-          alert('Failed to initialize guest session. Please refresh the page.');
+          console.error('Failed to initialize session:', error);
         }
       }
     };
 
     initializeApp();
-  }, [searchParams]);
+  }, [searchParams, isAuthenticated]);
 
   // Close dropdown on outside click
   useEffect(() => {
@@ -100,26 +97,29 @@ function Home() {
     e.preventDefault();
     if (!query.trim()) return;
 
-  console.log('Submit triggered - Guest mode:', isTrialMode, 'Authenticated:', isAuthenticated);
-  // Do not pre-spend credit here; backend will enforce and deduct
+    // For trial users, check and use credits
+    if (isTrialMode && !isAuthenticated) {
+      try {
+        await creditService.useCredit();
+        // Update credit info after using credit
+        const updatedCredits = await creditService.getCredits();
+        setCreditInfo(updatedCredits);
+      } catch (error) {
+        alert(`${error instanceof Error ? error.message : 'Failed to use credit'}. Please sign up to continue.`);
+        return;
+      }
+    }
 
     navigate(`/reports/${encodeURIComponent(query.trim())}`);
-
-    navigate(`/reports/${encodeURIComponent(query)}`);
-  };
-
-  const handleChipClick = (topic: string) => {
-    setQuery(topic);
-    navigate(`/reports/${encodeURIComponent(topic)}`);
   };
 
   const renderCreditDisplay = () => {
-  if (!isTrialMode || isAuthenticated || !creditInfo) return null;
+    if (!isTrialMode || isAuthenticated || !creditInfo) return null;
 
     return (
       <div className="credit-display">
         <FaCreditCard style={{ marginRight: 8 }} />
-  <span>Guest Credits: {creditInfo.credits_remaining}/5</span>
+        <span>Free Reports: {creditInfo.credits_remaining}/6</span>
         {creditInfo.credits_remaining <= 2 && (
           <Link to="/signup" className="upgrade-link">
             <FaSignInAlt style={{ marginRight: 4 }} />
@@ -173,46 +173,28 @@ function Home() {
         </div>
       )}
       <main className="home-main">
-        {/* Hero Section */}
-        <section className="home-hero-section">
-          <div className="home-hero-content">
-            <div className="home-hero-text">
-              <h1 className="hero-title">Understand Your Audience, Instantly</h1>
-              <p className="hero-description">
-                SentientAI delivers powerful sentiment analysis on any topic from across YouTube and Reddit.
-                Transform raw data into your competitive advantage.
-              </p>
-              
-              <div className="hero-search">
-                <form className="search-form" onSubmit={handleSubmit}>
-                  <div className="search-input-container">
-                    <FaSearch className="search-icon" />
-                    <input
-                      className="search-input"
-                      type="text"
-                      value={query}
-                      onChange={e => setQuery(e.target.value)}
-                      placeholder='eg. Analyze "Bitcoin" vs "Audit"...'
-                      autoFocus
-                    />
-                  </div>
-                  <button className="search-btn" type="submit">
-                    Generate Report
-                  </button>
-                </form>
-                <p className="credits-info">
-                  You have {creditInfo?.credits_remaining || 5} free reports remaining. No credit required.
-                </p>
-              </div>
-            </div>
-            
-            <div className="home-hero-image">
-              <img src="/tablet.png" alt="SentientAI Dashboard" className="home-tablet-image" />
-            </div>
-          </div>
-        </section>
-
-        
+        <div className="home-hero-text">
+          <h1 className="home-hero-title">Unlock Insights Instantly with AI-Powered Sentiment Analysis</h1>
+          <p className="home-hero-quote">"Transforming data into actionable intelligence, one sentiment at a time."</p>
+          {isTrialMode && !isAuthenticated && creditInfo && (
+            <p className="trial-notice">
+              🎉 You're in trial mode! {creditInfo.credits_remaining} free reports remaining.
+            </p>
+          )}
+        </div>
+        <form className="home-search-form" onSubmit={handleSubmit}>
+          <input
+            className="home-search-input"
+            type="text"
+            value={query}
+            onChange={e => setQuery(e.target.value)}
+            placeholder="eg.. Search Tesla or OpenAI...."
+            autoFocus
+          />
+          <button className="home-search-btn" type="submit">
+            Generate Report
+          </button>
+        </form>
         {isTrialMode && !isAuthenticated && creditInfo && creditInfo.credits_remaining === 0 && (
           <div className="credits-exhausted">
             <h3>Free reports exhausted!</h3>

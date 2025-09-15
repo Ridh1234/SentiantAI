@@ -1,4 +1,4 @@
-from app.utils.hf_inference import hf_chat_generate
+from app.utils.gemini_client import gemini_chat_generate
 from typing import List, Dict
 
 def generate_report_from_sentiments(topic: str, comments_with_sentiment: List[Dict], max_tokens: int = 512) -> str:
@@ -27,7 +27,7 @@ def generate_report_from_sentiments(topic: str, comments_with_sentiment: List[Di
     messages = [
         {"role": "user", "content": user_message}
     ]
-    # Call the HuggingFace Chat API (non-streaming)
-    response = hf_chat_generate(messages)
-    # Extract the generated content
-    return response["choices"][0]["message"]["content"] 
+    # Call the Gemini API
+    response = gemini_chat_generate(messages)
+    # Return the generated content directly
+    return response 

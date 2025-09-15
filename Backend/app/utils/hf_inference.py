@@ -27,8 +27,6 @@ if not HF_API_TOKEN:
 else:
     logger.debug(f"HF_API_TOKEN length: {len(HF_API_TOKEN)}")
 
-API_URL = "https://router.huggingface.co/v1/chat/completions"
-
 headers = {
     "Authorization": f"Bearer {HF_API_TOKEN}",
 }
@@ -96,42 +94,4 @@ def hf_sentiment_analysis(text: str, model: str = "distilbert/distilbert-base-un
         raise
     except Exception as e:
         logger.error(f"Error in hf_sentiment_analysis: {e}")
-        raise
-
-def hf_chat_generate(messages, model="Featherless-Chat-Models/Mistral-7B-Instruct-v0.2:featherless-ai"):
-    logger.debug(f"Generating chat with model: {model}")
-    logger.debug(f"Messages: {messages}")
-    
-    try:
-        # Format the payload according to the new HuggingFace API requirements
-        payload = {
-            "messages": messages,
-            "model": model
-        }
-        logger.debug(f"Payload: {payload}")
-        
-        response = requests.post(API_URL, headers=headers, json=payload)
-        logger.debug(f"Response status code: {response.status_code}")
-        logger.debug(f"Response content: {response.text}")
-        
-        if response.status_code == 404:
-            logger.error(f"Model not found: {model}")
-            raise ValueError(f"Model not found: {model}")
-        
-        if response.status_code != 200:
-            logger.error(f"API error: {response.status_code} - {response.text}")
-            raise Exception(f"API error: {response.status_code} - {response.text}")
-        
-        result = response.json()
-        if "choices" in result and len(result["choices"]) > 0:
-            choice = result["choices"][0]
-            if "message" in choice and "content" in choice["message"]:
-                return choice["message"]["content"]
-            elif "text" in choice:
-                return choice["text"]
-        else:
-            logger.error(f"Unexpected response format: {result}")
-            raise ValueError("Unexpected response format from HuggingFace API")
-    except Exception as e:
-        logger.error(f"Error in hf_chat_generate: {str(e)}")
         raise
