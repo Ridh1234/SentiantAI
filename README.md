@@ -178,7 +178,7 @@ Create a `.env` file in the Backend directory with the following variables:
 SUPABASE_URL=your_supabase_url
 SUPABASE_KEY=your_supabase_key
    # Twitter API credentials
-TWITTER_API_KEY=0cOmWjTNILu9IAzBKNNmGdUug
+TWITTER_API_KEY=
 TWITTER_API_KEY_SECRET=
 TWITTER_BEARER_TOKEN=
 # === REDDIT ===
@@ -226,3 +226,9 @@ npm run dev
 ┃ ┃ ┣ 📂 components/
 ┃ ┃ ┣ 📂 pages/
 ┃ ┃
+
+```
+
+## 📜 License
+
+This project is licensed under the [MIT License](LICENSE).
