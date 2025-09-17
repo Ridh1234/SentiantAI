@@ -5,7 +5,7 @@ import {
   FaChartLine, FaUsers, FaSmile, FaBuilding, FaQuoteLeft, FaRocket, 
   FaShieldAlt, FaCog, FaLightbulb, FaCheckCircle, FaStar, FaGlobe,
   FaTwitter, FaLinkedin, FaGithub, FaEnvelope, FaPhone, FaMapMarkerAlt,
-  FaArrowRight, FaPlay, FaHeadset, FaClock, FaAward
+  FaArrowRight, FaPlay, FaHeadset, FaClock, FaAward, FaBars, FaTimes
 } from 'react-icons/fa';
 import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, PieChart, Pie, Cell, LineChart, Line, AreaChart, Area, RadialBarChart, RadialBar, PolarAngleAxis, RadarChart, PolarGrid, Radar } from 'recharts';
 import { motion } from 'framer-motion';
@@ -230,11 +230,19 @@ function Landing(): React.ReactElement {
   const howItWorksRef = useRef<HTMLDivElement | null>(null);
   const pricingRef = useRef<HTMLDivElement | null>(null);
   const featuresRef = useRef<HTMLDivElement | null>(null);
+  
+  // Mobile menu state
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = React.useState(false);
 
   const scrollToSection = (ref: React.RefObject<HTMLDivElement | null>) => {
     if (ref.current) {
       ref.current.scrollIntoView({ behavior: 'smooth' });
     }
+    setIsMobileMenuOpen(false); // Close mobile menu after navigation
+  };
+
+  const toggleMobileMenu = () => {
+    setIsMobileMenuOpen(!isMobileMenuOpen);
   };
 
   return (
@@ -242,13 +250,16 @@ function Landing(): React.ReactElement {
       {/* Sticky Navigation */}
       <header className="navbar">
         <div className="logo"><FaChartLine style={{marginRight: 8}}/>SentientAI</div>
-        <nav>
+        <nav className={`nav-links ${isMobileMenuOpen ? 'nav-links-open' : ''}`}>
           <a className="nav-link" onClick={() => scrollToSection(howItWorksRef)} style={{cursor: 'pointer'}}>About</a>
           <a className="nav-link" onClick={() => scrollToSection(pricingRef)} style={{cursor: 'pointer'}}>Pricing</a>
           <a className="nav-link" onClick={() => scrollToSection(featuresRef)} style={{cursor: 'pointer'}}>Features</a>
-          <Link to="/login" className="nav-link">Login</Link>
-          <Link to="/signup" className="nav-link primary">Sign Up</Link>
+          <Link to="/login" className="nav-link" onClick={() => setIsMobileMenuOpen(false)}>Login</Link>
+          <Link to="/signup" className="nav-link primary" onClick={() => setIsMobileMenuOpen(false)}>Sign Up</Link>
         </nav>
+        <button className="mobile-menu-toggle" onClick={toggleMobileMenu}>
+          {isMobileMenuOpen ? <FaTimes /> : <FaBars />}
+        </button>
       </header>
 
       {/* Hero Section */}
