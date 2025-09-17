@@ -949,6 +949,21 @@
   
   .case-study-card {
     padding: 1.5rem;
+    text-align: center;
+  }
+  
+  .case-study-header {
+    justify-content: center;
+    text-align: center;
+  }
+  
+  .case-study-content {
+    text-align: center;
+  }
+  
+  .case-study-content ul {
+    text-align: left;
+    display: inline-block;
   }
   
   .case-study-card:hover {
@@ -1611,6 +1626,15 @@
     overflow-x: hidden;
   }
   
+  /* Center text content on smaller screens */
+  .feature-card, .case-study-card, .pricing-card, .team-card, .integration-item {
+    text-align: center;
+  }
+  
+  .case-study-content, .features-list {
+    text-align: center;
+  }
+  
   /* Adjust all section padding */
   .features, .how-it-works, .case-studies, .pricing, .team, .integrations {
     padding: 3rem 0;
@@ -1635,6 +1659,19 @@
   * {
     max-width: 100%;
     box-sizing: border-box;
+  }
+  
+  /* Center all text content on mobile */
+  .feature-card p, .case-study-content p, .team-card p {
+    text-align: center;
+  }
+  
+  .features-list {
+    text-align: center;
+  }
+  
+  .features-list li {
+    justify-content: center;
   }
   
   /* Button adjustments for very small screens */
